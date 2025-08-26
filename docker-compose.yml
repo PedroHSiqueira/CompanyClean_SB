@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  postgress:
+    image: 'postgres:latest'
+    container_name: 'CompanyClean'
+    environment:
+      - 'POSTGRES_DB=company'
+      - 'POSTGRES_USER=sa'
+      - 'POSTGRES_PASSWORD=company'
+    ports:
+      - '5432:5432'
+    restart: always
