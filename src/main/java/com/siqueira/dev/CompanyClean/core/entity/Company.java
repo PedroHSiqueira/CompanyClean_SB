@@ -1,6 +1,6 @@
 package com.siqueira.dev.CompanyClean.core.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -11,13 +11,13 @@ public class Company {
     private String address;
     private String type;
     private Integer numberOfEmployees;
-    private Timestamp createAt;
-    private Timestamp updateAt;
+    private LocalDateTime createAt;
+    private LocalDateTime updateAt;
 
     public Company() {
     }
 
-    public Company(UUID id, String name, String description, String address, String type, Integer numberOfEmployees, Timestamp createAt, Timestamp updateAt) {
+    public Company(UUID id, String name, String description, String address, String type, Integer numberOfEmployees, LocalDateTime createAt, LocalDateTime updateAt) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -76,19 +76,19 @@ public class Company {
         this.numberOfEmployees = numberOfEmployees;
     }
 
-    public Timestamp getCreateAt() {
+    public LocalDateTime getCreateAt() {
         return createAt;
     }
 
-    public void setCreateAt(Timestamp createAt) {
+    public void setCreateAt(LocalDateTime createAt) {
         this.createAt = createAt;
     }
 
-    public Timestamp getUpdateAt() {
+    public LocalDateTime getUpdateAt() {
         return updateAt;
     }
 
-    public void setUpdateAt(Timestamp updateAt) {
+    public void setUpdateAt(LocalDateTime updateAt) {
         this.updateAt = updateAt;
     }
 
