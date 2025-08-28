@@ -1,5 +1,6 @@
 package com.siqueira.dev.CompanyClean.infrastructure.persistence;
 
+import com.siqueira.dev.CompanyClean.core.Enums.CompanySize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,8 @@ public class CompanyEntity {
     private String address;
     private String type;
     private Integer numberOfEmployees;
+    @Enumerated(EnumType.STRING)
+    private CompanySize companySize;
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
 }
