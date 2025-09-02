@@ -22,7 +22,7 @@ public class CompanyController {
     @PostMapping
     public CompanyDTO createCompany(@RequestBody CompanyDTO companyDTO) {
         Company newCompany = createCompanyCase.execute(companyMapper.toModel(companyDTO));
-        return companyMapper.toDTO(newCompany);
+        return companyMapper.toDomain(newCompany);
     }
 
     @GetMapping
