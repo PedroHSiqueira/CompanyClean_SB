@@ -13,6 +13,6 @@ public class CreateCompanyCaseImpl implements CreateCompanyCase{
 
     @Override
     public Company execute(Company company) {
-        return null;
+        return company;
     }
 }
