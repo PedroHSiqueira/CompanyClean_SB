@@ -7,6 +7,9 @@ import com.siqueira.dev.CompanyClean.infrastructure.persistence.CompanyEntity;
 import com.siqueira.dev.CompanyClean.infrastructure.persistence.CompanyRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class CompanyRepositoryGateway implements CompanyGateway {
 
@@ -23,5 +26,14 @@ public class CompanyRepositoryGateway implements CompanyGateway {
         CompanyEntity companyEntity = companyEntityMapper.toEntity(company);
         CompanyEntity saveCompany = companyRepository.save(companyEntity);
         return companyEntityMapper.toDomain(saveCompany);
+    }
+
+    @Override
+    public List<Company> listCompanies() {
+       List<CompanyEntity> companyEntities = companyRepository.findAll();
+       List<Company> companies = new ArrayList<>();
+
+       companyEntities.forEach(companyEntity -> companies.add(companyEntityMapper.toDomain(companyEntity)));
+       return companies;
     }
 }

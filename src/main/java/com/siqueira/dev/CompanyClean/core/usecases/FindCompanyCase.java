@@ -2,8 +2,8 @@ package com.siqueira.dev.CompanyClean.core.usecases;
 
 import com.siqueira.dev.CompanyClean.core.entity.Company;
 
-import java.util.UUID;
+import java.util.List;
 
 public interface FindCompanyCase {
-    public Company execute(UUID uuid);
+    public List<Company> execute();
 }
