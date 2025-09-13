@@ -31,7 +31,7 @@ public class CompanyController {
     }
 
     @GetMapping
-    public List<Company> listCompanies() {
-        return findCompanyCase.execute();
+    public List<CompanyDTO> listCompanies() {
+        return findCompanyCase.execute().stream().map(companyMapper::toDomain).toList();
     }
 }
