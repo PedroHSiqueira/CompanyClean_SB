@@ -6,9 +6,12 @@ import com.siqueira.dev.CompanyClean.core.usecases.FindCompanyCase;
 import com.siqueira.dev.CompanyClean.infrastructure.Dto.CompanyDTO;
 import com.siqueira.dev.CompanyClean.infrastructure.Mapper.CompanyMapper;
 import com.siqueira.dev.CompanyClean.infrastructure.persistence.CompanyRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/Company")
@@ -25,9 +28,12 @@ public class CompanyController {
     }
 
     @PostMapping
-    public CompanyDTO createCompany(@RequestBody CompanyDTO companyDTO) {
+    public ResponseEntity<Map<String, Object>> createCompany(@RequestBody CompanyDTO companyDTO) {
         Company newCompany = createCompanyCase.execute(companyMapper.toModel(companyDTO));
-        return companyMapper.toDomain(newCompany);
+        Map<String, Object> response = new HashMap<>();
+        response.put("Message:", "Criado com Sucesso!");
+        response.put("Company:", newCompany);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping
