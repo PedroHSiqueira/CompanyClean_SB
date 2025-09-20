@@ -14,7 +14,7 @@ import java.util.List;
 public class CompanyRepositoryGateway implements CompanyGateway {
 
     private final CompanyRepository companyRepository;
-    private final CompanyEntityMapper  companyEntityMapper;
+    private final CompanyEntityMapper companyEntityMapper;
 
     public CompanyRepositoryGateway(CompanyEntityMapper companyEntityMapper, CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
@@ -30,10 +30,20 @@ public class CompanyRepositoryGateway implements CompanyGateway {
 
     @Override
     public List<Company> listCompanies() {
-       List<CompanyEntity> companyEntities = companyRepository.findAll();
-       List<Company> companies = new ArrayList<>();
+        List<CompanyEntity> companyEntities = companyRepository.findAll();
+        List<Company> companies = new ArrayList<>();
 
-       companyEntities.forEach(companyEntity -> companies.add(companyEntityMapper.toDomain(companyEntity)));
-       return companies;
+        companyEntities.forEach(companyEntity -> companies.add(companyEntityMapper.toDomain(companyEntity)));
+        return companies;
+    }
+
+    @Override
+    public Company findCompany(String name) {
+        CompanyEntity companyEntity = companyRepository.findByName(name).orElse(null);
+
+        if (companyEntity == null) {
+            return null;
+        }
+        return companyEntityMapper.toDomain(companyEntity);
     }
 }

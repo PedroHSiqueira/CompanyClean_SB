@@ -2,10 +2,10 @@ package com.siqueira.dev.CompanyClean.infrastructure.controller;
 
 import com.siqueira.dev.CompanyClean.core.entity.Company;
 import com.siqueira.dev.CompanyClean.core.usecases.CreateCompanyCase;
+import com.siqueira.dev.CompanyClean.core.usecases.FindByNameCompanyCase;
 import com.siqueira.dev.CompanyClean.core.usecases.FindCompanyCase;
 import com.siqueira.dev.CompanyClean.infrastructure.Dto.CompanyDTO;
 import com.siqueira.dev.CompanyClean.infrastructure.Mapper.CompanyMapper;
-import com.siqueira.dev.CompanyClean.infrastructure.persistence.CompanyRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,11 +19,13 @@ public class CompanyController {
 
     private final CreateCompanyCase createCompanyCase;
     private final FindCompanyCase  findCompanyCase;
+    private final FindByNameCompanyCase findByNameCompanyCase;
     private final CompanyMapper companyMapper;
 
-    public CompanyController(CreateCompanyCase createCompanyCase, FindCompanyCase findCompanyCase, CompanyMapper companyMapper) {
+    public CompanyController(CreateCompanyCase createCompanyCase, FindCompanyCase findCompanyCase, FindByNameCompanyCase findByNameCompanyCase, CompanyMapper companyMapper) {
         this.createCompanyCase = createCompanyCase;
         this.findCompanyCase = findCompanyCase;
+        this.findByNameCompanyCase = findByNameCompanyCase;
         this.companyMapper = companyMapper;
     }
 
@@ -39,5 +41,14 @@ public class CompanyController {
     @GetMapping
     public List<CompanyDTO> listCompanies() {
         return findCompanyCase.execute().stream().map(companyMapper::toDomain).toList();
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<Map<String, Object>> findCompany(@PathVariable String name) {
+        Company company = findByNameCompanyCase.execute(name);
+        Map<String, Object> response = new HashMap<>();
+        response.put("Message", "Encontrado!");
+        response.put("Company", company);
+        return ResponseEntity.ok(response);
     }
 }

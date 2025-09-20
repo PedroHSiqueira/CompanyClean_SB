@@ -1,7 +1,7 @@
 CREATE TABLE Company
 (
     id                  UUID PRIMARY KEY,
-    name                VARCHAR(255) NOT NULL,
+    name                VARCHAR(255) NOT NULL UNIQUE,
     description         TEXT,
     address             VARCHAR(255),
     type                VARCHAR(100),
