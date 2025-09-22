@@ -1,7 +1,6 @@
 package com.siqueira.dev.CompanyClean.infrastructure.Mapper;
 
 import com.siqueira.dev.CompanyClean.core.entity.Company;
-import com.siqueira.dev.CompanyClean.infrastructure.Dto.CompanyDTO;
 import com.siqueira.dev.CompanyClean.infrastructure.persistence.CompanyEntity;
 import org.springframework.stereotype.Component;
 
