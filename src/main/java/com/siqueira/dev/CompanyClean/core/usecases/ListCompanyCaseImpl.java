@@ -5,11 +5,11 @@ import com.siqueira.dev.CompanyClean.core.gateway.CompanyGateway;
 
 import java.util.List;
 
-public class FindCompanyCaseImpl implements FindCompanyCase{
+public class ListCompanyCaseImpl implements ListCompanyCase {
 
     private final CompanyGateway companyGateway;
 
-    public FindCompanyCaseImpl(CompanyGateway companyGateway) {
+    public ListCompanyCaseImpl(CompanyGateway companyGateway) {
         this.companyGateway = companyGateway;
     }
 

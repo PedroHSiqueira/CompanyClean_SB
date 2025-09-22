@@ -3,7 +3,7 @@ package com.siqueira.dev.CompanyClean.infrastructure.controller;
 import com.siqueira.dev.CompanyClean.core.entity.Company;
 import com.siqueira.dev.CompanyClean.core.usecases.CreateCompanyCase;
 import com.siqueira.dev.CompanyClean.core.usecases.FindByNameCompanyCase;
-import com.siqueira.dev.CompanyClean.core.usecases.FindCompanyCase;
+import com.siqueira.dev.CompanyClean.core.usecases.ListCompanyCase;
 import com.siqueira.dev.CompanyClean.infrastructure.Dto.CompanyDTO;
 import com.siqueira.dev.CompanyClean.infrastructure.Mapper.CompanyMapper;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +18,13 @@ import java.util.Map;
 public class CompanyController {
 
     private final CreateCompanyCase createCompanyCase;
-    private final FindCompanyCase  findCompanyCase;
+    private final ListCompanyCase listCompanyCase;
     private final FindByNameCompanyCase findByNameCompanyCase;
     private final CompanyMapper companyMapper;
 
-    public CompanyController(CreateCompanyCase createCompanyCase, FindCompanyCase findCompanyCase, FindByNameCompanyCase findByNameCompanyCase, CompanyMapper companyMapper) {
+    public CompanyController(CreateCompanyCase createCompanyCase, ListCompanyCase listCompanyCase, FindByNameCompanyCase findByNameCompanyCase, CompanyMapper companyMapper) {
         this.createCompanyCase = createCompanyCase;
-        this.findCompanyCase = findCompanyCase;
+        this.listCompanyCase = listCompanyCase;
         this.findByNameCompanyCase = findByNameCompanyCase;
         this.companyMapper = companyMapper;
     }
@@ -40,7 +40,7 @@ public class CompanyController {
 
     @GetMapping
     public List<CompanyDTO> listCompanies() {
-        return findCompanyCase.execute().stream().map(companyMapper::toDomain).toList();
+        return listCompanyCase.execute().stream().map(companyMapper::toDomain).toList();
     }
 
     @GetMapping("/name/{name}")

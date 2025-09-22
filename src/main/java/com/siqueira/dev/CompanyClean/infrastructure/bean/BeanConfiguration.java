@@ -14,8 +14,8 @@ public class BeanConfiguration{
     };
 
     @Bean
-    public FindCompanyCase findCompanyCase(CompanyGateway companyGateway){
-        return new FindCompanyCaseImpl(companyGateway);
+    public ListCompanyCase findCompanyCase(CompanyGateway companyGateway){
+        return new ListCompanyCaseImpl(companyGateway);
     }
 
     @Bean
